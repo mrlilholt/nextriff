@@ -8,24 +8,30 @@ cloudinary.config({
 
 const formatTracks = (resources) =>
   resources.map((file, index) => {
-    let customData = file.context?.custom;
-    // If customData isn’t an object, try parsing the context string
-    if (!customData && file.context && typeof file.context === 'string') {
-      customData = {};
-      file.context.split('|').forEach(pair => {
-        const [key, value] = pair.split('=');
-        if (key && value) {
-          customData[key.trim()] = value.trim();
-        }
-      });
+    let customData = {};
+    if (file.context) {
+      if (file.context.custom && typeof file.context.custom === 'object') {
+        // If context data is nested under custom
+        customData = file.context.custom;
+      } else if (typeof file.context === 'object') {
+        // If context is an object but not nested under custom
+        customData = file.context;
+      } else if (typeof file.context === 'string') {
+        // Parse the context string, e.g. "artist=Name|title=Song"
+        file.context.split('|').forEach(pair => {
+          const [key, value] = pair.split('=');
+          if (key && value) {
+            customData[key.trim()] = value.trim();
+          }
+        });
+      }
     }
-
     return {
       id: index + 1,
       title:
-        customData?.title ||
+        customData.title ||
         file.public_id.split("/").pop().replace(/_/g, " "),
-      artist: customData?.artist || "Unknown Artist",
+      artist: customData.artist || "Unknown Artist",
       url: file.secure_url,
     };
   });
