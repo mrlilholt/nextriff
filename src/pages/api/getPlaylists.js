@@ -7,14 +7,28 @@ cloudinary.config({
 });
 
 const formatTracks = (resources) =>
-  resources.map((file, index) => ({
-    id: index + 1,
-    title:
-      file.context?.custom?.title ||
-      file.public_id.split("/").pop().replace(/_/g, " "),
-    artist: file.context?.custom?.artist || "Unknown Artist",
-    url: file.secure_url,
-  }));
+  resources.map((file, index) => {
+    let customData = file.context?.custom;
+    // If customData isn’t an object, try parsing the context string
+    if (!customData && file.context && typeof file.context === 'string') {
+      customData = {};
+      file.context.split('|').forEach(pair => {
+        const [key, value] = pair.split('=');
+        if (key && value) {
+          customData[key.trim()] = value.trim();
+        }
+      });
+    }
+
+    return {
+      id: index + 1,
+      title:
+        customData?.title ||
+        file.public_id.split("/").pop().replace(/_/g, " "),
+      artist: customData?.artist || "Unknown Artist",
+      url: file.secure_url,
+    };
+  });
 
 export default async function handler(req, res) {
   try {
