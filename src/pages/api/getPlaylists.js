@@ -33,7 +33,7 @@ const formatTracks = (resources) =>
 export default async function handler(req, res) {
   try {
     // Folder paths that mirror your Cloudinary structure
-    const folders = ['music/Morning', 'music/Driving', 'music/Chill'];
+    const folders = ['music/Morning', 'music/Driving', 'music/Chill', 'music/Sleepy_Time', 'music/Hanging_Out', 'music/Get_Pumped_Up', 'music/Misc'];
     const playlists = {};
 
     for (const folder of folders) {
