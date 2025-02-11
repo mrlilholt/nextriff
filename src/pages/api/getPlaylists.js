@@ -6,6 +6,16 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+const formatTracks = (resources) =>
+  resources.map((file, index) => ({
+    id: index + 1,
+    title:
+      file.context?.custom?.title ||
+      file.public_id.split("/").pop().replace(/_/g, " "),
+    artist: file.context?.custom?.artist || "Unknown Artist",
+    url: file.secure_url,
+  }));
+
 export default async function handler(req, res) {
   try {
     // Folder paths that mirror your Cloudinary structure
@@ -23,12 +33,7 @@ export default async function handler(req, res) {
       // Derive a simple playlist name from the folder path ("Morning" from "music/Morning")
       const playlistName = folder.split('/').pop();
 
-      playlists[playlistName] = result.resources.map((resource) => ({
-        artist: resource.context?.custom?.artist || 'Unknown Artist',
-        title: resource.context?.custom?.title || resource.public_id.split('/').pop(),
-        url: resource.secure_url,
-        playlist: playlistName,
-      }));
+      playlists[playlistName] = formatTracks(result.resources);
     }
 
     res.status(200).json(playlists);
