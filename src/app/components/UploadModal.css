@@ -46,6 +46,17 @@
   margin-bottom: 10px;
 }
 
+.upload-modal select {
+  color: #000; /* Set text color to black */
+  background-color: #fff; /* White background */
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
 .user-info {
   display: flex;
   justify-content: flex-start; /* Left align the user info */
