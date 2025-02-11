@@ -46,8 +46,11 @@ const UploadSection = ({ currentUserEmail }) => {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', 'musicUploads');
-        // Use the selected playlistType to determine the folder
         formData.append('folder', `music/${playlistType}`);
+
+        // Append custom context metadata (artist and title)
+        // The format is `key=value|key2=value2`
+        formData.append('context', `artist=${artist}|title=${songTitle}`);
 
         try {
             const res = await fetch('https://api.cloudinary.com/v1_1/dkbkpdugz/upload', {

@@ -34,6 +34,18 @@
   align-items: flex-start; /* Left align all child elements */
 }
 
+.upload-modal input[type="text"],
+.upload-modal textarea {
+  color: #000; /* Set text color to black */
+  background-color: #fff; /* Optional: set a white background */
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
 .user-info {
   display: flex;
   justify-content: flex-start; /* Left align the user info */
