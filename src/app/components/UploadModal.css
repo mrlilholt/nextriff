@@ -1,0 +1,69 @@
+/* Import Work Sans font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  max-width: 500px;
+  width: 80%;
+  font-family: 'Work Sans', sans-serif; /* Use Work Sans font */
+  border-radius: 10px;
+}
+
+.upload-modal {
+  background-color: rgba(50, 50, 50, 0.9); /* Dark gray background */
+  color: #fff;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif; /* Use Work Sans font */
+  text-align: left; /* Left justify all text */
+  border-radius: 10px;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Left align all child elements */
+}
+
+.user-info {
+  display: flex;
+  justify-content: flex-start; /* Left align the user info */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px; /* Add some space between the image and the logout button */
+}
+
+.modal-button {
+  cursor: pointer;
+  background-color: #ff5722;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 10px 0; /* Adjust margin for left alignment */
+  color: #fff;
+  transition: 0.3s ease;
+  font-family: 'Work Sans', sans-serif; /* Use Work Sans font */
+}
+
+.modal-button:hover {
+  background-color: #e64a19;
+}
+
+.metadata {
+  margin-top: 20px;
+}
