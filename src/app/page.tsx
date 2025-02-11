@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import RadioPlayer from "./components/RadioPlayer";
 import MobileLayout from "./components/MobileLayout";
 
